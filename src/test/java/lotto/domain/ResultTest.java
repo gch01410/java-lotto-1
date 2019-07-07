@@ -6,6 +6,7 @@ import lotto.domain.lottogenerator.ManualLottoGeneratingStrategy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -70,8 +71,7 @@ public class ResultTest {
     @Test
     void 수익률_계산() {
         Result result = lottoTickets.match(winningLotto);
-
-        assertThat(result.calculateEarningsRate(new Payment("5000"))).isEqualTo(406_301);
+        assertThat(result.calculateEarningsRate(new Payment("5000"))).isEqualTo(BigDecimal.valueOf(406_301.0));
     }
 
     @Test

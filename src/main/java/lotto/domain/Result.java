@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Objects;
 
@@ -20,19 +21,19 @@ public class Result {
         return lottoScore.get(rank);
     }
 
-    public double calculateEarningsRate(Payment payment) {
+    public BigDecimal calculateEarningsRate(Payment payment) {
         if (Objects.isNull(payment)) {
             throw new NullPointerException();
         }
-        long totalWinningMoney = calculateTotalWinningMoney();
+        BigDecimal totalWinningMoney = calculateTotalWinningMoney();
 
         return payment.calculateEarningsRate(totalWinningMoney);
     }
 
-    private long calculateTotalWinningMoney() {
-        return lottoScore.keySet().stream()
+    private BigDecimal calculateTotalWinningMoney() {
+        return BigDecimal.valueOf(lottoScore.keySet().stream()
                 .mapToLong(rank -> lottoScore.get(rank) * rank.getWinningMoney())
-                .sum();
+                .sum());
     }
 
     @Override

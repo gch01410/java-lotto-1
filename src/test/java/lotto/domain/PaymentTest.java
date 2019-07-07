@@ -5,6 +5,8 @@ import lotto.exception.PaymentOutOfBoundsException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class PaymentTest {
@@ -42,6 +44,6 @@ public class PaymentTest {
 
     @Test
     void 수익률_계산_확인() {
-        assertThat(payment.calculateEarningsRate(10_000)).isEqualTo(10.0);
+        assertThat(payment.calculateEarningsRate(BigDecimal.valueOf(10_000))).isEqualTo(BigDecimal.valueOf(10.0));
     }
 }

@@ -4,6 +4,8 @@ import lotto.exception.NaturalNumberException;
 import lotto.exception.PaymentOutOfBoundsException;
 import org.apache.commons.lang3.StringUtils;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Payment {
@@ -32,8 +34,8 @@ public class Payment {
         return payment / LOTTO_PRICE;
     }
 
-    public double calculateEarningsRate(long totalWinningMoney) {
-        return (double) totalWinningMoney / payment;
+    public BigDecimal calculateEarningsRate(BigDecimal totalWinningMoney) {
+        return totalWinningMoney.divide(new BigDecimal(payment), 1, RoundingMode.HALF_EVEN);
     }
 
     @Override
